@@ -17,7 +17,7 @@ Feature-based folder structure under `src/features/` code is organized by domain
 
 ## Key decisions
 
-**URL-driven state** `?page=2&pageSize=10&q=john` means links are shareable, the back button works, and pasting a URL into a new tab restores the exact view. Most implementations reach for `useState` and lose all of this.
+**URL-driven state** `?page=2&pageSize=10&q=john` means links are shareable, the back button works, and pasting a URL into a new tab restores the exact view. 
 
 **React Query** handles caching, retry logic, and background refetch. The next page is prefetched silently so pagination feels instant, and `placeholderData` keeps the previous page visible while the next one loads no layout flicker.
 
