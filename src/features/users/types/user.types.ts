@@ -51,7 +51,7 @@ export interface UsersResponse {
   info: ApiInfo;
 }
 
-/** Pagination parameters that will be passed to the API and hooks */
+/** Pagination parameters passed to the API and hooks */
 export interface PaginationParams {
   page: number;
   pageSize: number;

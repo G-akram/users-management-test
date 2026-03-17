@@ -1,4 +1,4 @@
-import type { UsersResponse, PaginationParams } from "../types/user";
+import type { UsersResponse, PaginationParams } from "../types/user.types";
 
 const BASE_URL = "https://randomuser.me/api";
 

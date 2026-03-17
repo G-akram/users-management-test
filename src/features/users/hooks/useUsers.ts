@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { fetchUsers } from "../api/usersApi";
-import type { PaginationParams } from "../types/user";
+import type { PaginationParams } from "../types/user.types";
 
 export const userKeys = {
   all: ["users"] as const,
@@ -10,8 +10,8 @@ export const userKeys = {
 };
 
 /**
- * Fetches the current page and silently/in background prefetches the next one
- * By the time the user clicks "Next", data should be already in the cache.
+ * Fetches the current page and silently prefetches the next one in the background.
+ * By the time the user clicks "Next", data should already be in the cache.
  */
 export function useUsers({ page, pageSize }: PaginationParams) {
   const queryClient = useQueryClient();
@@ -24,7 +24,7 @@ export function useUsers({ page, pageSize }: PaginationParams) {
     retry: 2,
   });
 
-  // Prefetch next page in the background so navigation is instant
+  // Prefetch next page so navigation feels instant
   useEffect(() => {
     queryClient.prefetchQuery({
       queryKey: userKeys.page(page + 1, pageSize),

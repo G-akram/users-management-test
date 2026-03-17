@@ -22,7 +22,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    // InFo || TODO, here we log/report the error to the error reporting service
+    // TODO: pipe to an error-reporting service (e.g. Sentry)
     console.error("[ErrorBoundary]", error, info.componentStack);
   }
 
@@ -39,14 +39,13 @@ export class ErrorBoundary extends Component<Props, State> {
           role="alert"
           className="flex flex-col items-center justify-center py-24 text-center gap-4"
         >
-          <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center"></div>
+          <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center" />
           <div>
             <h2 className="text-lg font-semibold text-slate-800">
               Something went wrong
             </h2>
             <p className="text-sm text-slate-400 mt-1 max-w-xs font-mono">
-              {this.state.error?.message ??
-                "An unexpected rendering error occurred."}
+              {this.state.error?.message ?? "An unexpected rendering error occurred."}
             </p>
           </div>
           <button

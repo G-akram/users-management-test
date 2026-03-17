@@ -1,6 +1,7 @@
-import type { User } from "../types/user";
+import type { User } from "../types/user.types";
 import { UserCard } from "./UserCard";
-import { ErrorState } from "./ErrorState";
+import { EmptySearch } from "./EmptySearch";
+import { ErrorState } from "../../../shared/components/ErrorState";
 
 interface UserGridProps {
   users: User[];
@@ -9,7 +10,7 @@ interface UserGridProps {
   error: Error | null;
   pageSize: number;
   page: number;
-  // TODO: searchQuery?: string; to be implemented in the future when search will be added
+  searchQuery: string;
   onRetry: () => void;
 }
 
@@ -20,7 +21,7 @@ export function UserGrid({
   error,
   pageSize,
   page,
-
+  searchQuery,
   onRetry,
 }: UserGridProps) {
   if (isError) return <ErrorState error={error} onRetry={onRetry} />;
@@ -31,7 +32,8 @@ export function UserGrid({
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
     >
       {isLoading ? (
-        "loading.." //TODO: skeleton loaders
+        // TODO: replace with skeleton loaders
+        "loading.."
       ) : users.length > 0 ? (
         users.map((user, i) => (
           <UserCard
@@ -43,20 +45,8 @@ export function UserGrid({
           />
         ))
       ) : (
-        <EmptySearch query={"searchQuery"} />
+        <EmptySearch query={searchQuery} />
       )}
-    </div>
-  );
-}
-
-function EmptySearch({ query }: { query: string }) {
-  return (
-    <div className="col-span-full py-20 text-center">
-      <p className="text-4xl mb-3">🔍</p>
-      <p className="font-semibold text-slate-700">No results for "{query}"</p>
-      <p className="text-sm text-slate-400 mt-1">
-        Try a different name, email or city.
-      </p>
     </div>
   );
 }

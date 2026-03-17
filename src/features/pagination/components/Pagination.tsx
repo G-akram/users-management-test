@@ -1,6 +1,5 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const PAGE_SIZE_OPTIONS = [5, 10, 20] as const;
 const MAX_VISIBLE_PAGES = 5;
 
 interface PaginationProps {
@@ -10,9 +9,10 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
   onPageSizeChange: (size: number) => void;
   isFetching: boolean;
+  pageSizeOptions: readonly number[];
 }
 
-// Ensure select value is always a string so React matches it to option values reliably
+/** Ensures the select value is always a string so React matches it to option values reliably. */
 function toSelectValue(n: number): string {
   return String(n);
 }
@@ -24,6 +24,7 @@ export function Pagination({
   onPageChange,
   onPageSizeChange,
   isFetching,
+  pageSizeOptions,
 }: PaginationProps) {
   const pages = buildPageRange(page, totalPages);
 
@@ -34,12 +35,10 @@ export function Pagination({
         <span>Rows per page</span>
         <select
           value={toSelectValue(pageSize)}
-          onChange={(e) => {
-            onPageSizeChange(Number(e.target.value));
-          }}
+          onChange={(e) => onPageSizeChange(Number(e.target.value))}
           className="rounded-lg border border-slate-200 px-2 py-1 text-sm text-slate-700 bg-white outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition cursor-pointer"
         >
-          {PAGE_SIZE_OPTIONS.map((s) => (
+          {pageSizeOptions.map((s) => (
             <option key={s} value={String(s)}>
               {s}
             </option>

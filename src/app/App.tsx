@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-
-import { ErrorBoundary } from "./components/ErrorBoundary";
-import UserListPage from "./pages/UserListPage";
+import { ErrorBoundary } from "../shared/components";
+import UserListPage from "../pages/UserListPage";
 
 export default function App() {
   return (

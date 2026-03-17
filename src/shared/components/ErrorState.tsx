@@ -3,7 +3,7 @@ interface ErrorStateProps {
   onRetry: () => void;
 }
 
-/** Shown when a React Query fetch fails — distinct from the ErrorBoundary. */
+/** Shown when a React Query fetch fails — distinct from the crash-catching ErrorBoundary. */
 export function ErrorState({ error, onRetry }: ErrorStateProps) {
   return (
     <div
@@ -11,7 +11,7 @@ export function ErrorState({ error, onRetry }: ErrorStateProps) {
       role="alert"
       className="flex flex-col items-center justify-center py-24 text-center gap-4"
     >
-      <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center"></div>
+      <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center" />
       <div>
         <h2 className="text-lg font-semibold text-slate-800">
           {/* TODO: add icon */}

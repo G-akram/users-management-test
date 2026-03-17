@@ -1,5 +1,5 @@
 import { Users } from "lucide-react";
-import { SearchBar } from "./SearchBar";
+import { SearchBar } from "../../features/search";
 
 interface HeaderProps {
   searchQuery: string;
