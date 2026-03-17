@@ -1,3 +1,6 @@
+> [!WARNING]
+> **API Seed Issue** If the app fails to load users, the seed value cached on randomuser.me's servers may be in a broken state . To fix it, change the `SEED` constant in `src/features/users/api/usersApi.ts` to any other string (e.g. `"abc123"`) and restart. This has no impact on functionality the seed only ensures pagination consistency.
+
 # User Directory
 
 React + TypeScript + React Query app consuming the [randomuser.me](https://randomuser.me) public API.
