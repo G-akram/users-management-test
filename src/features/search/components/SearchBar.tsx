@@ -19,6 +19,7 @@ export function SearchBar({
 
       <input
         /* TODO: to be used for E2E tests */
+        aria-label="Search users by name, email or city"
         data-testid="search-input"
         type="search"
         value={value}
