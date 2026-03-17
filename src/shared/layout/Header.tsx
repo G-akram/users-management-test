@@ -29,7 +29,7 @@ export function Header({
         {/* ── Brand ────────────────────────────────────────────────── */}
         <div className="flex items-center gap-3 mr-auto">
           <div className="flex items-center justify-center w-8 h-8 shadow-md rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 shadow-brand-200">
-            <Users className="w-4 h-4 text-black" />
+            <Users className="w-4 h-4 text-white" />
           </div>
           <div>
             <span className="text-sm font-bold leading-none tracking-tight text-slate-900">

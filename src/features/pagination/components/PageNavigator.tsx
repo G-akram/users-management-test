@@ -74,7 +74,7 @@ function NavBtn({ children, active, className = "", ...props }: NavBtnProps) {
         disabled:opacity-40 disabled:cursor-not-allowed
         ${
           active
-            ? " border-brand-500 text-blue-400   shadow-sm"
+            ? "bg-brand-500 border-brand-500 text-white shadow-sm"
             : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
         } ${className}`}
     >
