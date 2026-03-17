@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useUsers } from "../../../features/users";
+import { TOTAL_PAGES, useUsers } from "../../../features/users";
 import { useDebounce } from "../../../features/search";
 import {
   DEFAULT_PAGE_SIZE,
@@ -20,7 +20,13 @@ export function useUserListState() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // ── Derive state from URL ───────────────────────────────────────────────
-  const page = Math.max(1, Number(searchParams.get("page") ?? 1));
+
+  const rawPage = Number(searchParams.get("page"));
+  // NOTE: extra validation to ensure page is a finite number within bounds, otherwise default to 1
+  //  This prevents weird states from invalid URLs like /?page=abc or /?page=-5.
+  const page = Number.isFinite(rawPage)
+    ? Math.min(Math.max(1, Math.floor(rawPage)), TOTAL_PAGES)
+    : 1;
   const pageSize = parsePageSize(searchParams.get("pageSize"));
   const searchQuery = searchParams.get("q") ?? "";
   const debouncedQuery = useDebounce(searchQuery, 280);
