@@ -4,7 +4,7 @@ const BASE_URL = "https://randomuser.me/api";
 
 //NOTE: Seed is added to ensure consistent results across pagination (same users on each page on every load) because randomuser.me generates a new set of users for each request.
 // In a real app, the backend should handle this.
-const SEED = "user-directory-app-test";
+const SEED = "user-directory-app-test-seed";
 
 export async function fetchUsers({
   page,
