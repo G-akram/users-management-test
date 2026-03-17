@@ -1,5 +1,6 @@
 import { Component } from "react";
 import type { ReactNode, ErrorInfo } from "react";
+import { AlertTriangle, RotateCcw } from "lucide-react";
 
 interface Props {
   children: ReactNode;
@@ -39,11 +40,11 @@ export class ErrorBoundary extends Component<Props, State> {
           role="alert"
           className="flex flex-col items-center justify-center py-24 text-center gap-4"
         >
-          <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center" />
+          <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center">
+            <AlertTriangle className="w-7 h-7 text-red-400" />
+          </div>
           <div>
-            <h2 className="text-lg font-semibold text-slate-800">
-              Something went wrong
-            </h2>
+            <h2 className="text-lg font-semibold text-slate-800">Something went wrong</h2>
             <p className="text-sm text-slate-400 mt-1 max-w-xs font-mono">
               {this.state.error?.message ?? "An unexpected rendering error occurred."}
             </p>
@@ -52,6 +53,7 @@ export class ErrorBoundary extends Component<Props, State> {
             onClick={this.handleReset}
             className="flex items-center gap-2 px-5 py-2 rounded-xl bg-brand-500 text-white text-sm font-medium hover:bg-brand-600 active:bg-brand-700 transition shadow-sm"
           >
+            <RotateCcw className="w-3.5 h-3.5" />
             Try again
           </button>
         </div>
