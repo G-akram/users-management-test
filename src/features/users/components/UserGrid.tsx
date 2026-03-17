@@ -10,7 +10,6 @@ interface UserGridProps {
   isError: boolean;
   error: Error | null;
   pageSize: number;
-  page: number;
   searchQuery: string;
   onRetry: () => void;
 }
@@ -21,7 +20,6 @@ export function UserGrid({
   isError,
   error,
   pageSize,
-  page,
   searchQuery,
   onRetry,
 }: UserGridProps) {
@@ -36,15 +34,7 @@ export function UserGrid({
       className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       {users.length > 0 ? (
-        users.map((user, i) => (
-          <UserCard
-            key={user.login.uuid}
-            user={user}
-            page={page}
-            pageSize={pageSize}
-            style={{ animationDelay: `${i * 40}ms` }}
-          />
-        ))
+        users.map((user) => <UserCard key={user.login.uuid} user={user} />)
       ) : (
         <EmptySearch query={searchQuery} />
       )}

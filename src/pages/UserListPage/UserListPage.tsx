@@ -36,7 +36,7 @@ const UserListPage = () => {
         isFetching={isFetching}
       />
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+      <main className="max-w-6xl px-4 py-8 mx-auto sm:px-6">
         {/* ── Status bar ───────────────────────────────────────────── */}
         <div className="flex items-center justify-between mb-6 min-h-[1.5rem]">
           <p className="text-sm text-slate-400">
@@ -48,7 +48,7 @@ const UserListPage = () => {
             )}
           </p>
 
-          <span className="text-xs text-slate-300 font-mono tabular-nums">
+          <span className="font-mono text-xs text-slate-300 tabular-nums">
             pg {page} / {TOTAL_PAGES}
           </span>
         </div>
@@ -61,7 +61,6 @@ const UserListPage = () => {
             isError={isError}
             error={error}
             pageSize={pageSize}
-            page={page}
             searchQuery={searchQuery}
             onRetry={refetch}
           />
@@ -69,7 +68,7 @@ const UserListPage = () => {
 
         {/* ── Bottom navigation ─────────────────────────────────────── */}
         {!isError && !isLoading && (
-          <div className="flex justify-center pt-8 border-t border-slate-100 mt-8">
+          <div className="flex justify-center pt-8 mt-8 border-t border-slate-100">
             <PageNavigator
               page={page}
               totalPages={TOTAL_PAGES}
