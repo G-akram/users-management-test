@@ -1,19 +1,25 @@
-## User Directory
+# User Directory
 
-React + TypeScript + React Query app consuming randomuser.me.
+React + TypeScript + React Query app consuming the [randomuser.me](https://randomuser.me) public API.
 
-### Running locally
+## Running locally
 
+```bash
 npm install && npm run dev
+```
 
-### Architecture
+## Architecture
 
-Feature-based folder structure under `src/features/`.
-State lives in the URL (page, pageSize, search query) — links are shareable and the back button works correctly.
+Feature-based folder structure under `src/features/` code is organized by domain (`users`, `search`, `pagination`) rather than by type. Each feature owns its API, types, hooks, and components and exposes a single `index.ts` barrel.
 
-### Tradeoffs
+## Key decisions
 
-Search filters client-side on the current page's cached data.
-Server-side filtering would require a different API. A stable `?seed=`
-parameter is passed to randomuser.me to ensure consistent pagination
-(without it, pages can return overlapping results).
+**URL-driven state** `?page=2&pageSize=10&q=john` means links are shareable, the back button works, and pasting a URL into a new tab restores the exact view. Most implementations reach for `useState` and lose all of this.
+
+**React Query** handles caching, retry logic, and background refetch. The next page is prefetched silently so pagination feels instant, and `placeholderData` keeps the previous page visible while the next one loads no layout flicker.
+
+**Stable seed** a fixed `?seed=` parameter is passed to randomuser.me so pages are consistent and non-overlapping. Without it, each request generates a fresh random set and page 2 can return duplicates from page 1.
+
+## Tradeoffs
+
+Search filters client-side on the current page's cached data intentional for this scope. In a production app with a large dataset, filtering would move server-side. `data-testid` attributes are in place on key elements for E2E coverage with Playwright.
