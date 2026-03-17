@@ -1,1 +1,2 @@
-export { Pagination } from "./components/Pagination";
+export { PageSizeSelector } from "./components/PageSizeSelector";
+export { PageNavigator } from "./components/PageNavigator";
