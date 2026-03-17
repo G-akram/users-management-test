@@ -15,9 +15,10 @@ export function SearchBar({
 }: SearchBarProps) {
   return (
     <div className="relative flex items-center">
-      <Search className="pointer-events-none absolute left-3 w-4 h-4 text-slate-400" />
+      <Search className="absolute w-4 h-4 pointer-events-none left-3 text-slate-400" />
 
       <input
+        /* TODO: to be used for E2E tests */
         data-testid="search-input"
         type="search"
         value={value}

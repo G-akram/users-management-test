@@ -31,8 +31,9 @@ export function UserGrid({
 
   return (
     <div
+      /* TODO: to be used for E2E tests */
       data-testid="user-grid"
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+      className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       {users.length > 0 ? (
         users.map((user, i) => (
@@ -50,4 +51,3 @@ export function UserGrid({
     </div>
   );
 }
-
