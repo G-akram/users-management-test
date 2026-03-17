@@ -1,12 +1,14 @@
-function App() {
+import { Routes, Route } from "react-router-dom";
+
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import UserListPage from "./pages/UserListPage";
+
+export default function App() {
   return (
-    <>
-      <h1 className="text-red-500"> Hello world</h1>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded">
-        Click me
-      </button>
-    </>
+    <ErrorBoundary>
+      <Routes>
+        <Route path="/" element={<UserListPage />} />
+      </Routes>
+    </ErrorBoundary>
   );
 }
-
-export default App;
