@@ -14,4 +14,6 @@ export { useUsers, userKeys } from "./hooks/useUsers";
 // Components
 export { UserCard } from "./components/UserCard";
 export { UserGrid } from "./components/UserGrid";
+export { UserCardSkeleton } from "./components/UserCardSkeleton";
+export { UserGridSkeleton } from "./components/UserGridSkeleton";
 export { EmptySearch } from "./components/EmptySearch";

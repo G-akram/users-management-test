@@ -1,5 +1,6 @@
 import type { User } from "../types/user.types";
 import { UserCard } from "./UserCard";
+import { UserGridSkeleton } from "./UserGridSkeleton";
 import { EmptySearch } from "./EmptySearch";
 import { ErrorState } from "../../../shared/components/ErrorState";
 
@@ -26,15 +27,14 @@ export function UserGrid({
 }: UserGridProps) {
   if (isError) return <ErrorState error={error} onRetry={onRetry} />;
 
+  if (isLoading) return <UserGridSkeleton count={pageSize} />;
+
   return (
     <div
       data-testid="user-grid"
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
     >
-      {isLoading ? (
-        // TODO: replace with skeleton loaders
-        "loading.."
-      ) : users.length > 0 ? (
+      {users.length > 0 ? (
         users.map((user, i) => (
           <UserCard
             key={user.login.uuid}
@@ -50,3 +50,4 @@ export function UserGrid({
     </div>
   );
 }
+

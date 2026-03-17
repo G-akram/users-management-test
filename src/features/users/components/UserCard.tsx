@@ -1,11 +1,8 @@
-import type { CSSProperties } from "react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import type { User } from "../types/user.types";
 
 interface UserCardProps {
   user: User;
-  page: number;
-  pageSize: number;
-  style?: CSSProperties;
 }
 
 export function UserCard({ user }: UserCardProps) {
@@ -13,43 +10,44 @@ export function UserCard({ user }: UserCardProps) {
   const fullName = `${name.first} ${name.last}`;
   const city = `${location.city}, ${location.country}`;
 
-  // TODO: implement when user detail page is added
-  // const detailUrl = `/users/${login.uuid}?page=${page}&pageSize=${pageSize}`;
+  // TODO: wrap in <Link to={detailUrl}> once a user detail page is added.
 
   return (
-    /* TODO: can be converted to a <Link> once a user detail page exists */
-    <div>
-      {/* ── Photo ───────────────────────────────────────────────────────── */}
-      <div className="relative h-44 overflow-hidden bg-slate-100">
+    <article className="group relative flex flex-col rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+      {/* ── Photo ─────────────────────────────────────────────────────── */}
+      <div className="relative h-48 overflow-hidden bg-slate-100 shrink-0">
         <img
           src={picture.large}
           alt={fullName}
           className="w-full h-full object-cover object-top scale-105 group-hover:scale-100 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
         {/* Nationality pill */}
-        <span className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm text-white text-[10px] font-mono font-medium tracking-widest px-2 py-0.5 rounded-full border border-white/30">
+        <span className="absolute top-3 right-3 bg-black/30 backdrop-blur-sm text-white text-[10px] font-mono font-semibold tracking-widest px-2.5 py-1 rounded-full border border-white/20">
           {nat}
         </span>
 
-        {/* Name + age overlaid on photo */}
-        <div className="absolute bottom-0 left-0 right-0 px-4 pb-3">
-          <h2 className="text-white font-semibold text-base leading-tight drop-shadow">
+        {/* Age badge */}
+        <span className="absolute top-3 left-3 bg-white/15 backdrop-blur-sm text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-white/20">
+          {dob.age} yrs
+        </span>
+
+        {/* Name overlaid */}
+        <div className="absolute bottom-0 left-0 right-0 px-4 pb-3.5">
+          <h2 className="text-white font-bold text-base leading-tight drop-shadow-sm">
             {fullName}
           </h2>
-          <p className="text-white/70 text-xs font-mono mt-0.5">{dob.age} yrs</p>
         </div>
       </div>
 
-      {/* ── Details ─────────────────────────────────────────────────────── */}
-      <div className="px-4 py-3 flex flex-col gap-2 flex-1">
-        {/* TODO: add icons per row */}
-        <DetailRow icon={null} label={email} truncate />
-        <DetailRow icon={null} label={phone} />
-        <DetailRow icon={null} label={city} truncate />
+      {/* ── Details ───────────────────────────────────────────────────── */}
+      <div className="flex flex-col gap-2.5 px-4 py-4 flex-1">
+        <DetailRow icon={<Mail className="w-3.5 h-3.5" />} label={email} truncate />
+        <DetailRow icon={<Phone className="w-3.5 h-3.5" />} label={phone} />
+        <DetailRow icon={<MapPin className="w-3.5 h-3.5" />} label={city} truncate />
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -61,10 +59,10 @@ interface DetailRowProps {
 
 function DetailRow({ icon, label, truncate }: DetailRowProps) {
   return (
-    <div className="flex items-center gap-2 min-w-0 text-brand-500">
-      <span className="shrink-0">{icon}</span>
+    <div className="flex items-center gap-2.5 min-w-0">
+      <span className="shrink-0 text-brand-400">{icon}</span>
       <span
-        className={`text-slate-500 text-xs leading-tight ${truncate ? "truncate" : ""}`}
+        className={`text-slate-500 text-xs leading-snug ${truncate ? "truncate" : ""}`}
         title={label}
       >
         {label}
